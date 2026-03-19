@@ -9,7 +9,7 @@
         "ADA-USD": "BUY",
         "DOGE-USD": "BUY",
         "AVAX-USD": "BUY",
-        "LINK-USD": null,
+        "LINK-USD": "BUY",
         "LTC-USD": null
     },
     "entry_prices": {
@@ -21,7 +21,7 @@
         "ADA-USD": 0.27158820629119873,
         "DOGE-USD": 0.09473361074924469,
         "AVAX-USD": 9.616801261901855,
-        "LINK-USD": 0.0,
+        "LINK-USD": 8.941646575927734,
         "LTC-USD": 0.0
     },
     "history": {
