@@ -1,5 +1,5 @@
 {
-    "balance": 3446.9633858273737,
+    "balance": 3908.1613479859398,
     "positions": {
         "BTC-USD": null,
         "ETH-USD": null,
@@ -10,7 +10,7 @@
         "DOGE-USD": "BUY",
         "AVAX-USD": null,
         "LINK-USD": null,
-        "LTC-USD": "SELL"
+        "LTC-USD": null
     },
     "entry_prices": {
         "BTC-USD": 0.0,
@@ -22,7 +22,7 @@
         "DOGE-USD": 0.09473361074924469,
         "AVAX-USD": 0.0,
         "LINK-USD": 0.0,
-        "LTC-USD": 56.12806701660156
+        "LTC-USD": 0.0
     },
     "history": {
         "BTC-USD": [],
@@ -61,6 +61,15 @@
                 "Time": "2026-03-20 08:24"
             }
         ],
-        "LTC-USD": []
+        "LTC-USD": [
+            {
+                "Type": "SELL",
+                "Entry": 56.12806701660156,
+                "Exit": 55.37708282470703,
+                "P/L": 461.19796215856627,
+                "Status": "\ud83d\udfe2 WIN",
+                "Time": "2026-03-20 12:02"
+            }
+        ]
     }
 }
