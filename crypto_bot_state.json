@@ -1,5 +1,5 @@
 {
-    "balance": 1499.9,
+    "balance": 1499.8000000000002,
     "positions": {
         "BTC-USD": null,
         "ETH-USD": null,
@@ -10,7 +10,7 @@
         "DOGE-USD": null,
         "AVAX-USD": null,
         "LINK-USD": null,
-        "LTC-USD": null,
+        "LTC-USD": "SELL",
         "DOT-USD": null,
         "MATIC-USD": null,
         "NEAR-USD": null,
@@ -27,7 +27,7 @@
         "DOGE-USD": 0.0,
         "AVAX-USD": 0.0,
         "LINK-USD": 0.0,
-        "LTC-USD": 0.0,
+        "LTC-USD": 55.992122650146484,
         "DOT-USD": 0.0,
         "MATIC-USD": 0.0,
         "NEAR-USD": 0.0,
