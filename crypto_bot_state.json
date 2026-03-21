@@ -1,8 +1,8 @@
 {
-    "balance": 1499.8000000000002,
+    "balance": 1499.5000000000005,
     "positions": {
-        "BTC-USD": null,
-        "ETH-USD": null,
+        "BTC-USD": "BUY",
+        "ETH-USD": "BUY",
         "SOL-USD": null,
         "BNB-USD": null,
         "XRP-USD": "BUY",
@@ -13,13 +13,13 @@
         "LTC-USD": "SELL",
         "DOT-USD": null,
         "MATIC-USD": null,
-        "NEAR-USD": null,
+        "NEAR-USD": "BUY",
         "UNI-USD": null,
         "ATOM-USD": null
     },
     "entry_prices": {
-        "BTC-USD": 0.0,
-        "ETH-USD": 0.0,
+        "BTC-USD": 70152.015625,
+        "ETH-USD": 2145.71240234375,
         "SOL-USD": 0.0,
         "BNB-USD": 0.0,
         "XRP-USD": 1.4364418983459473,
@@ -30,7 +30,7 @@
         "LTC-USD": 55.992122650146484,
         "DOT-USD": 0.0,
         "MATIC-USD": 0.0,
-        "NEAR-USD": 0.0,
+        "NEAR-USD": 1.3122037649154663,
         "UNI-USD": 0.0,
         "ATOM-USD": 0.0
     },
