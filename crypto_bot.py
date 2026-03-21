@@ -356,5 +356,5 @@ if __name__ == "__main__":
     else:
         while True:
             bot.run_all()
-            print("Waiting 15 minutes for the next crypto candle... ⏳")
-            time.sleep(900)
+            print("Waiting 1 minute for the next crypto candle... ⏳")
+            time.sleep(60)
