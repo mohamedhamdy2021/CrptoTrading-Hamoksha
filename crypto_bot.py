@@ -28,8 +28,11 @@ def send_telegram_message(message):
 
 STATE_FILE = "crypto_bot_state.json"
 
+POSITION_SIZE = 100       # كل صفقة بتدخل بـ 100 دولار ثابتة
+BINANCE_FEE = 0.001       # عمولة Binance = 0.1% لكل عملية (شراء أو بيع)
+
 class CryptoLiquisHunterBot:
-    def __init__(self, initial_balance=2500.0):
+    def __init__(self, initial_balance=1000.0):
         # أهم 10 عملات رقمية
         self.symbols = [
             "BTC-USD",  # Bitcoin
@@ -48,6 +51,10 @@ class CryptoLiquisHunterBot:
         self.positions = {sym: None for sym in self.symbols}
         self.entry_prices = {sym: 0.0 for sym in self.symbols}
         self.history = {sym: [] for sym in self.symbols}
+        # توصيات لم تتنفذ بسبب عدم كفاية الرصيد
+        self.shadow_trades = {sym: None for sym in self.symbols}
+        self.shadow_entry_prices = {sym: 0.0 for sym in self.symbols}
+        self.shadow_history = {sym: [] for sym in self.symbols}
         
         self.load_state()
 
@@ -60,6 +67,9 @@ class CryptoLiquisHunterBot:
                     self.positions = data.get("positions", self.positions)
                     self.entry_prices = data.get("entry_prices", self.entry_prices)
                     self.history = data.get("history", self.history)
+                    self.shadow_trades = data.get("shadow_trades", self.shadow_trades)
+                    self.shadow_entry_prices = data.get("shadow_entry_prices", self.shadow_entry_prices)
+                    self.shadow_history = data.get("shadow_history", self.shadow_history)
                 print(f"📂 State Loaded: Balance {self.balance:.2f}$")
             except Exception as e:
                 print(f"Error loading state: {e}")
@@ -69,7 +79,10 @@ class CryptoLiquisHunterBot:
             "balance": self.balance,
             "positions": self.positions,
             "entry_prices": self.entry_prices,
-            "history": self.history
+            "history": self.history,
+            "shadow_trades": self.shadow_trades,
+            "shadow_entry_prices": self.shadow_entry_prices,
+            "shadow_history": self.shadow_history
         }
         try:
             with open(STATE_FILE, "w") as f:
@@ -77,17 +90,20 @@ class CryptoLiquisHunterBot:
         except Exception as e:
             print(f"Error saving state: {e}")
 
+    def get_open_trade_count(self):
+        return sum(1 for v in self.positions.values() if v is not None)
+
+    def get_locked_balance(self):
+        return self.get_open_trade_count() * POSITION_SIZE
+
+    def get_available_balance(self):
+        return self.balance - self.get_locked_balance()
+
     def fetch_market_data(self, symbol):
-        # 15m intervals are better for crypto liquidations than 5m
         data = yf.download(symbol, period="5d", interval="15m", progress=False)
         return data
 
     def check_scam_wicks(self, data, symbol):
-        """
-        استراتيجية Crypto: Scam Wicks & Liquidations Hunter (صائد التسييل والتلاعب)
-        في الكريبتو، الحيتان بيعملوا شمعة بديل طويل جداً (Wick) يضرب وقوف الخسارة (Liquidations) بفوليوم عالي،
-        وبعدين يعكسوا السعر فوراً. البوت ده بيدخل مع الانعكاس ده!
-        """
         if len(data) < 21: return 0
         
         def get_val(row, col):
@@ -111,15 +127,12 @@ class CryptoLiquisHunterBot:
         current_low = get_val(current_candle, 'Low')
         current_vol = get_val(current_candle, 'Volume')
         
-        # شرط الفوليوم الانفجاري (تأكيد حدوث تسييل أموال)
         is_liquidation_volume = current_vol > (1.5 * avg_volume)
         
-        # 1. Fakeout Top (ضرب ستوبات البائعين) -> SELL SIGNAL
         if current_high > previous_high and current_price < previous_high and is_liquidation_volume:
             print(f"[{symbol}] 🚨 MASSIVE LONG LIQUIDATION WICK DETECTED! (Volume: {current_vol:.0f})")
             return -1
             
-        # 2. Fakeout Bottom (ضرب ستوبات المشترين) -> BUY SIGNAL
         if current_low < previous_low and current_price > previous_low and is_liquidation_volume:
             print(f"[{symbol}] 🚨 MASSIVE SHORT LIQUIDATION WICK DETECTED! (Volume: {current_vol:.0f})")
             return 1
@@ -129,20 +142,61 @@ class CryptoLiquisHunterBot:
     def execute_trade(self, symbol, signal, current_price):
         action_msg = None
         current_pos = self.positions[symbol]
+        shadow_pos = self.shadow_trades[symbol]
         
+        # --- أولاً: معالجة الـ Shadow Trades (التوصيات اللي مدخلتش بسبب الرصيد) ---
+        if shadow_pos is not None:
+            if (shadow_pos == "BUY" and signal == -1) or (shadow_pos == "SELL" and signal == 1):
+                self.close_shadow_trade(symbol, float(current_price))
+        
+        # --- ثانياً: الصفقات الحقيقية ---
         if current_pos is None:
-            if signal == 1:
-                self.positions[symbol] = "BUY"
-                self.entry_prices[symbol] = float(current_price)
-                action_msg = f"🦄 *SMART MONEY CRYPTO: BUY* 🟢\n🪙 *Coin:* `{symbol}`\n📍 *Entry:* `{current_price:.4f}`\n💰 *Total Balance:* `{self.balance:.2f}$`\n💥 _Reason: Short Liquidation Sweep_"
-                print(action_msg)
-            elif signal == -1:
-                self.positions[symbol] = "SELL"
-                self.entry_prices[symbol] = float(current_price)
-                action_msg = f"🐻 *SMART MONEY CRYPTO: SELL* 🔴\n🪙 *Coin:* `{symbol}`\n📍 *Entry:* `{current_price:.4f}`\n💰 *Total Balance:* `{self.balance:.2f}$`\n💥 _Reason: Long Liquidation Sweep_"
-                print(action_msg)
+            if signal != 0:
+                available = self.get_available_balance()
+                entry_fee = POSITION_SIZE * BINANCE_FEE
+                
+                if available >= POSITION_SIZE:
+                    # فيه رصيد كافي → نفتح صفقة حقيقية
+                    direction = "BUY" if signal == 1 else "SELL"
+                    self.positions[symbol] = direction
+                    self.entry_prices[symbol] = float(current_price)
+                    # خصم عمولة الدخول من الرصيد
+                    self.balance -= entry_fee
+                    
+                    reason = "Short Liquidation Sweep" if signal == 1 else "Long Liquidation Sweep"
+                    emoji = "🦄" if signal == 1 else "🐻"
+                    color = "🟢" if signal == 1 else "🔴"
+                    open_count = self.get_open_trade_count()
+                    
+                    action_msg = (f"{emoji} *CRYPTO: {direction}* {color}\n"
+                                  f"🪙 *Coin:* `{symbol}`\n"
+                                  f"📍 *Entry:* `{current_price:.4f}`\n"
+                                  f"💵 *Deal Size:* `{POSITION_SIZE}$`\n"
+                                  f"💸 *Entry Fee:* `-{entry_fee:.2f}$`\n"
+                                  f"📂 *Open Trades:* `{open_count}/{len(self.symbols)}`\n"
+                                  f"💰 *Balance:* `{self.balance:.2f}$`\n"
+                                  f"💥 _Reason: {reason}_")
+                    print(action_msg)
+                else:
+                    # مفيش رصيد كافي → نبعت توصية بس من غير ما ندخل
+                    direction = "BUY" if signal == 1 else "SELL"
+                    reason = "Short Liquidation Sweep" if signal == 1 else "Long Liquidation Sweep"
+                    
+                    # نسجل الصفقة كـ Shadow Trade عشان نتابع نتيجتها
+                    self.shadow_trades[symbol] = direction
+                    self.shadow_entry_prices[symbol] = float(current_price)
+                    
+                    open_count = self.get_open_trade_count()
+                    action_msg = (f"⚠️ *SIGNAL (Not Enough Balance)* ⚠️\n"
+                                  f"🪙 *Coin:* `{symbol}`\n"
+                                  f"📍 *Recommended:* `{direction}` at `{current_price:.4f}`\n"
+                                  f"📂 *Open Trades:* `{open_count}/{len(self.symbols)}`\n"
+                                  f"💰 *Available:* `{available:.2f}$` (need `{POSITION_SIZE}$`)\n"
+                                  f"💥 _Reason: {reason}_\n"
+                                  f"📌 _Will track result without affecting balance_")
+                    print(action_msg)
         else:
-            # الخروج لو الإشارة اتعكست
+            # إغلاق صفقة حقيقية لو الإشارة اتعكست
             if (current_pos == "BUY" and signal == -1) or (current_pos == "SELL" and signal == 1):
                 action_msg = self.close_position(symbol, float(current_price))
                 
@@ -153,24 +207,40 @@ class CryptoLiquisHunterBot:
         current_pos = self.positions[symbol]
         entry = self.entry_prices[symbol]
         
-        # ربح/خسارة بالنسبة المئوية. افترضنا رافعة مالية (Leverage) x10 كمتوسط للكريبتو.
-        LEVERAGE = 10
+        # حساب الربح/الخسارة بناءً على حجم صفقة ثابت 100$
         if current_pos == "BUY":
-            profit_loss = ((current_price - entry) / entry) * self.balance * LEVERAGE
+            gross_pnl = POSITION_SIZE * ((current_price - entry) / entry)
         elif current_pos == "SELL":
-            profit_loss = ((entry - current_price) / entry) * self.balance * LEVERAGE
+            gross_pnl = POSITION_SIZE * ((entry - current_price) / entry)
             
-        self.balance += profit_loss
-        status = "🟢 WIN" if profit_loss > 0 else "🔴 LOSS"
+        # خصم عمولة الخروج (0.1%)
+        exit_fee = POSITION_SIZE * BINANCE_FEE
+        net_pnl = gross_pnl - exit_fee
+        total_fees = (POSITION_SIZE * BINANCE_FEE) * 2  # عمولة الدخول + الخروج
+            
+        pct_change = ((current_price - entry) / entry) * 100
+        self.balance += gross_pnl - exit_fee  # نضيف الربح الصافي (بعد خصم عمولة الخروج فقط، الدخول اتخصمت وقت الفتح)
+        status = "🟢 WIN" if net_pnl > 0 else "🔴 LOSS"
         
-        msg = f"💸 *CRYPTO TRADE CLOSED* 💸\n🪙 *Coin:* `{symbol}`\n🔄 *Type:* `{current_pos}`\n💵 *P/L:* `{profit_loss:.2f}$` ({status})\n🏦 *New Balance:* `{self.balance:.2f}$`"
+        msg = (f"💸 *CRYPTO TRADE CLOSED* 💸\n"
+               f"🪙 *Coin:* `{symbol}`\n"
+               f"🔄 *Type:* `{current_pos}`\n"
+               f"📍 *Entry:* `{entry:.4f}`\n"
+               f"🏁 *Exit:* `{current_price:.4f}`\n"
+               f"📊 *Change:* `{pct_change:+.2f}%`\n"
+               f"💰 *Gross P/L:* `{gross_pnl:+.2f}$`\n"
+               f"💸 *Total Fees:* `-{total_fees:.2f}$` (0.1% x2)\n"
+               f"💵 *Net P/L:* `{net_pnl:+.2f}$` ({status})\n"
+               f"🏦 *New Balance:* `{self.balance:.2f}$`")
         print(msg)
         
         self.history[symbol].append({
             'Type': current_pos, 
             'Entry': entry, 
             'Exit': current_price, 
-            'P/L': profit_loss, 
+            'Gross_PnL': round(gross_pnl, 2),
+            'Fees': round(total_fees, 2),
+            'P/L': round(net_pnl, 2), 
             'Status': status,
             'Time': datetime.now().strftime('%Y-%m-%d %H:%M')
         })
@@ -181,6 +251,45 @@ class CryptoLiquisHunterBot:
         self.send_symbol_summary(symbol)
         return msg
 
+    def close_shadow_trade(self, symbol, current_price):
+        """إغلاق توصية (Shadow Trade) وعرض نتيجتها من غير ما تأثر على الرصيد"""
+        shadow_pos = self.shadow_trades[symbol]
+        entry = self.shadow_entry_prices[symbol]
+        
+        if shadow_pos == "BUY":
+            gross_pnl = POSITION_SIZE * ((current_price - entry) / entry)
+        elif shadow_pos == "SELL":
+            gross_pnl = POSITION_SIZE * ((entry - current_price) / entry)
+            
+        total_fees = (POSITION_SIZE * BINANCE_FEE) * 2
+        net_pnl = gross_pnl - total_fees
+        pct_change = ((current_price - entry) / entry) * 100
+        status = "🟢 WIN" if net_pnl > 0 else "🔴 LOSS"
+        
+        msg = (f"👻 *SHADOW TRADE RESULT (Not in Balance)* 👻\n"
+               f"🪙 *Coin:* `{symbol}`\n"
+               f"🔄 *Type:* `{shadow_pos}`\n"
+               f"📍 *Entry:* `{entry:.4f}`\n"
+               f"🏁 *Exit:* `{current_price:.4f}`\n"
+               f"📊 *Change:* `{pct_change:+.2f}%`\n"
+               f"💵 *Would-be Net P/L:* `{net_pnl:+.2f}$` ({status})\n"
+               f"📌 _This trade was NOT executed (insufficient balance)_")
+        print(msg)
+        send_telegram_message(msg)
+        
+        self.shadow_history[symbol].append({
+            'Type': shadow_pos,
+            'Entry': entry,
+            'Exit': current_price,
+            'P/L': round(net_pnl, 2),
+            'Status': status,
+            'Time': datetime.now().strftime('%Y-%m-%d %H:%M')
+        })
+        
+        self.shadow_trades[symbol] = None
+        self.shadow_entry_prices[symbol] = 0.0
+        self.save_state()
+
     def send_symbol_summary(self, symbol):
         hist = self.history[symbol]
         if not hist: return
@@ -189,25 +298,27 @@ class CryptoLiquisHunterBot:
         total = len(hist)
         win_rate = (wins / total) * 100 if total > 0 else 0
         total_profit = sum(t['P/L'] for t in hist)
+        total_fees = sum(t.get('Fees', 0) for t in hist)
         
         summary_msg = f"📊 *{symbol} Crypto Summary*\n"
-        summary_msg += f"🏅 *Total P/L:* `{total_profit:.2f}$`\n"
+        summary_msg += f"🏅 *Net P/L:* `{total_profit:+.2f}$`\n"
+        summary_msg += f"💸 *Total Fees Paid:* `{total_fees:.2f}$`\n"
         summary_msg += f"📈 *Win Rate:* `{win_rate:.1f}%` ({wins}/{total})\n\n"
         summary_msg += "📜 *Recent Trades:*\n"
         
         for t in hist[-3:]:
             emoji = "🟢" if "WIN" in t.get('Status', '') else "🔴"
-            summary_msg += f"{emoji} {t['Type']} | P/L: `{t['P/L']:.2f}$`\n"
+            summary_msg += f"{emoji} {t['Type']} | Entry: `{t['Entry']:.4f}` → Exit: `{t['Exit']:.4f}` | Net: `{t['P/L']:+.2f}$`\n"
             
         print(summary_msg.replace('*', '').replace('`', ''))
         send_telegram_message(summary_msg)
 
     def run_all(self):
-        print(f"\n[{datetime.now().strftime('%H:%M:%S')}] Mapping Top 10 Crypto Markets for Liquidations...")
+        print(f"\n[{datetime.now().strftime('%H:%M:%S')}] Scanning Top 10 Crypto Markets...")
+        print(f"💰 Balance: {self.balance:.2f}$ | 📂 Open: {self.get_open_trade_count()}/{len(self.symbols)} | 🔓 Available: {self.get_available_balance():.2f}$")
         for symbol in self.symbols:
             try:
                 data = self.fetch_market_data(symbol)
-                # تخطي العملة لو مفيش داتا 
                 if data.empty or len(data) < 21:
                     continue
                     
@@ -216,7 +327,6 @@ class CryptoLiquisHunterBot:
                 else:
                     current_price = data.iloc[-1]['Close']
                 
-                # الكريبتو معندوش Kill Zones شغال 24/7!
                 signal = self.check_scam_wicks(data, symbol)
                 
                 msg = self.execute_trade(symbol, signal, current_price)
@@ -234,17 +344,11 @@ class CryptoLiquisHunterBot:
 
 if __name__ == "__main__":
     bot = CryptoLiquisHunterBot()
-    startup_msg = f"🚀 *Crypto Scam Wick Hunter Started!*\n🌐 *Monitoring:* {len(bot.symbols)} Coins\n💰 *Balance:* {bot.balance}$"
-    print(startup_msg.replace('*', ''))
+    print(f"🤖 Crypto Bot Ready | Balance: {bot.balance:.2f}$ | Monitoring: {len(bot.symbols)} Coins")
     
-    # رسالة للتيست في تليجرام عشان نتأكد من الكريبتو بوت
-    send_telegram_message(startup_msg)
-    
-    # لو شغالين على سيرفرات جيت هب (تتنفذ مرة واحدة وتقفل عشان توفر السيرفر)
     if os.getenv('GITHUB_ACTIONS'):
         bot.run_all()
     else:
-        # لو شغالين لوكال (تفضل شغالة في لوب كل ربع ساعة)
         while True:
             bot.run_all()
             print("Waiting 15 minutes for the next crypto candle... ⏳")
