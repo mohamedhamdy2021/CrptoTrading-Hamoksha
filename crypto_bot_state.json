@@ -1,19 +1,19 @@
 {
-    "balance": 1520.0858311281133,
+    "balance": 1507.6165180040005,
     "positions": {
         "BTC-USD": "BUY",
         "ETH-USD": "BUY",
         "SOL-USD": "SELL",
-        "BNB-USD": "BUY",
+        "BNB-USD": null,
         "XRP-USD": "BUY",
         "ADA-USD": "SELL",
-        "DOGE-USD": null,
+        "DOGE-USD": "SELL",
         "AVAX-USD": null,
         "LINK-USD": null,
         "LTC-USD": null,
         "DOT-USD": "SELL",
         "MATIC-USD": null,
-        "NEAR-USD": "BUY",
+        "NEAR-USD": null,
         "UNI-USD": null,
         "ATOM-USD": "BUY"
     },
@@ -21,16 +21,16 @@
         "BTC-USD": 70152.015625,
         "ETH-USD": 2145.71240234375,
         "SOL-USD": 90.44242858886719,
-        "BNB-USD": 629.5614624023438,
+        "BNB-USD": 0.0,
         "XRP-USD": 1.4364418983459473,
         "ADA-USD": 0.2605400085449219,
-        "DOGE-USD": 0.0,
+        "DOGE-USD": 0.09254574775695801,
         "AVAX-USD": 0.0,
         "LINK-USD": 0.0,
         "LTC-USD": 0.0,
         "DOT-USD": 1.2882604598999023,
         "MATIC-USD": 0.0,
-        "NEAR-USD": 1.3122037649154663,
+        "NEAR-USD": 0.0,
         "UNI-USD": 0.0,
         "ATOM-USD": 1.770936131477356
     },
@@ -38,7 +38,18 @@
         "BTC-USD": [],
         "ETH-USD": [],
         "SOL-USD": [],
-        "BNB-USD": [],
+        "BNB-USD": [
+            {
+                "Type": "BUY",
+                "Entry": 629.5614624023438,
+                "Exit": 615.9132080078125,
+                "Gross_PnL": -2.17,
+                "Fees": 0.2,
+                "P/L": -2.27,
+                "Status": "\ud83d\udd34 LOSS",
+                "Time": "2026-03-28 13:58"
+            }
+        ],
         "XRP-USD": [],
         "ADA-USD": [],
         "DOGE-USD": [
@@ -102,7 +113,18 @@
             }
         ],
         "MATIC-USD": [],
-        "NEAR-USD": [],
+        "NEAR-USD": [
+            {
+                "Type": "BUY",
+                "Entry": 1.3122037649154663,
+                "Exit": 1.1809648275375366,
+                "Gross_PnL": -10.0,
+                "Fees": 0.2,
+                "P/L": -10.1,
+                "Status": "\ud83d\udd34 LOSS",
+                "Time": "2026-03-28 13:58"
+            }
+        ],
         "UNI-USD": [],
         "ATOM-USD": []
     },
