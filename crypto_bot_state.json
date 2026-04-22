@@ -1,11 +1,11 @@
 {
-    "balance": 1512.2397655274322,
+    "balance": 1522.7550463070395,
     "positions": {
         "BTC-USD": "BUY",
-        "ETH-USD": null,
-        "SOL-USD": "BUY",
+        "ETH-USD": "SELL",
+        "SOL-USD": null,
         "BNB-USD": "SELL",
-        "XRP-USD": "BUY",
+        "XRP-USD": null,
         "ADA-USD": "SELL",
         "DOGE-USD": "SELL",
         "AVAX-USD": "SELL",
@@ -19,10 +19,10 @@
     },
     "entry_prices": {
         "BTC-USD": 70152.015625,
-        "ETH-USD": 0.0,
-        "SOL-USD": 85.08999633789062,
+        "ETH-USD": 2389.300048828125,
+        "SOL-USD": 0.0,
         "BNB-USD": 647.6199951171875,
-        "XRP-USD": 1.3554999828338623,
+        "XRP-USD": 0.0,
         "ADA-USD": 0.2480107843875885,
         "DOGE-USD": 0.09638000279664993,
         "AVAX-USD": 8.8724365234375,
@@ -68,6 +68,16 @@
                 "P/L": 6.33,
                 "Status": "\ud83d\udfe2 WIN",
                 "Time": "2026-04-19 07:40"
+            },
+            {
+                "Type": "BUY",
+                "Entry": 85.08999633789062,
+                "Exit": 87.94000244140625,
+                "Gross_PnL": 3.35,
+                "Fees": 0.2,
+                "P/L": 3.25,
+                "Status": "\ud83d\udfe2 WIN",
+                "Time": "2026-04-22 05:39"
             }
         ],
         "BNB-USD": [
@@ -112,6 +122,16 @@
                 "P/L": -3.54,
                 "Status": "\ud83d\udd34 LOSS",
                 "Time": "2026-04-14 14:14"
+            },
+            {
+                "Type": "BUY",
+                "Entry": 1.3554999828338623,
+                "Exit": 1.4566999673843384,
+                "Gross_PnL": 7.47,
+                "Fees": 0.2,
+                "P/L": 7.37,
+                "Status": "\ud83d\udfe2 WIN",
+                "Time": "2026-04-22 05:39"
             }
         ],
         "ADA-USD": [
