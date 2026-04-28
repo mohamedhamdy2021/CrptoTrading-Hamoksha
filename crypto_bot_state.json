@@ -1,7 +1,7 @@
 {
-    "balance": 1522.4320356253934,
+    "balance": 1531.184206881164,
     "positions": {
-        "BTC-USD": "BUY",
+        "BTC-USD": null,
         "ETH-USD": "SELL",
         "SOL-USD": null,
         "BNB-USD": "SELL",
@@ -18,7 +18,7 @@
         "ATOM-USD": "BUY"
     },
     "entry_prices": {
-        "BTC-USD": 70152.015625,
+        "BTC-USD": 0.0,
         "ETH-USD": 2389.300048828125,
         "SOL-USD": 0.0,
         "BNB-USD": 632.4299926757812,
@@ -35,7 +35,18 @@
         "ATOM-USD": 1.8960000276565552
     },
     "history": {
-        "BTC-USD": [],
+        "BTC-USD": [
+            {
+                "Type": "BUY",
+                "Entry": 70152.015625,
+                "Exit": 76361.9921875,
+                "Gross_PnL": 8.85,
+                "Fees": 0.2,
+                "P/L": 8.75,
+                "Status": "\ud83d\udfe2 WIN",
+                "Time": "2026-04-28 21:14"
+            }
+        ],
         "ETH-USD": [
             {
                 "Type": "BUY",
