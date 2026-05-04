@@ -1,5 +1,5 @@
 {
-    "balance": 1535.1300121443558,
+    "balance": 1534.9245282719075,
     "positions": {
         "BTC-USD": "SELL",
         "ETH-USD": "SELL",
@@ -15,7 +15,7 @@
         "MATIC-USD": null,
         "NEAR-USD": "BUY",
         "UNI-USD": null,
-        "ATOM-USD": "BUY"
+        "ATOM-USD": null
     },
     "entry_prices": {
         "BTC-USD": 78726.609375,
@@ -32,7 +32,7 @@
         "MATIC-USD": 0.0,
         "NEAR-USD": 1.360265851020813,
         "UNI-USD": 0.0,
-        "ATOM-USD": 1.8960000276565552
+        "ATOM-USD": 0.0
     },
     "history": {
         "BTC-USD": [
@@ -361,6 +361,16 @@
                 "P/L": -4.99,
                 "Status": "\ud83d\udd34 LOSS",
                 "Time": "2026-04-03 03:29"
+            },
+            {
+                "Type": "BUY",
+                "Entry": 1.8960000276565552,
+                "Exit": 1.8940000534057617,
+                "Gross_PnL": -0.11,
+                "Fees": 0.2,
+                "P/L": -0.21,
+                "Status": "\ud83d\udd34 LOSS",
+                "Time": "2026-05-04 22:42"
             }
         ]
     },
