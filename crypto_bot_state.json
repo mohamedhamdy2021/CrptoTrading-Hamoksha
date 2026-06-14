@@ -1,5 +1,5 @@
 {
-    "balance": 1461.476362631369,
+    "balance": 1461.3763626313691,
     "positions": {
         "BTC-USD": null,
         "ETH-USD": "BUY",
@@ -15,7 +15,7 @@
         "MATIC-USD": null,
         "NEAR-USD": "SELL",
         "UNI-USD": null,
-        "ATOM-USD": null
+        "ATOM-USD": "BUY"
     },
     "entry_prices": {
         "BTC-USD": 0.0,
@@ -32,7 +32,7 @@
         "MATIC-USD": 0.0,
         "NEAR-USD": 2.0360000133514404,
         "UNI-USD": 0.0,
-        "ATOM-USD": 0.0
+        "ATOM-USD": 1.930999994277954
     },
     "history": {
         "BTC-USD": [
