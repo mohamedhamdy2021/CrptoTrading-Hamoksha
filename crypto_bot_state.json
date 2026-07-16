@@ -1,9 +1,9 @@
 {
-    "balance": 1413.044696953753,
+    "balance": 1408.8867246087248,
     "positions": {
         "BTC-USD": "SELL",
         "ETH-USD": "SELL",
-        "SOL-USD": "SELL",
+        "SOL-USD": null,
         "BNB-USD": "SELL",
         "XRP-USD": null,
         "ADA-USD": "BUY",
@@ -15,12 +15,12 @@
         "MATIC-USD": null,
         "NEAR-USD": "SELL",
         "UNI-USD": null,
-        "ATOM-USD": "SELL"
+        "ATOM-USD": null
     },
     "entry_prices": {
         "BTC-USD": 64202.3203125,
         "ETH-USD": 1752.5,
-        "SOL-USD": 71.52999877929688,
+        "SOL-USD": 0.0,
         "BNB-USD": 569.52001953125,
         "XRP-USD": 0.0,
         "ADA-USD": 0.2395000010728836,
@@ -32,7 +32,7 @@
         "MATIC-USD": 0.0,
         "NEAR-USD": 2.0390000343322754,
         "UNI-USD": 0.0,
-        "ATOM-USD": 1.6030000448226929
+        "ATOM-USD": 0.0
     },
     "history": {
         "BTC-USD": [
@@ -229,6 +229,16 @@
                 "P/L": 5.06,
                 "Status": "\ud83d\udfe2 WIN",
                 "Time": "2026-06-13 08:12"
+            },
+            {
+                "Type": "SELL",
+                "Entry": 71.52999877929688,
+                "Exit": 76.86000061035156,
+                "Gross_PnL": -7.45,
+                "Fees": 0.2,
+                "P/L": -7.55,
+                "Status": "\ud83d\udd34 LOSS",
+                "Time": "2026-07-16 00:58"
             }
         ],
         "BNB-USD": [
@@ -851,6 +861,16 @@
                 "P/L": -4.61,
                 "Status": "\ud83d\udd34 LOSS",
                 "Time": "2026-07-02 04:15"
+            },
+            {
+                "Type": "SELL",
+                "Entry": 1.6030000448226929,
+                "Exit": 1.5470000505447388,
+                "Gross_PnL": 3.49,
+                "Fees": 0.2,
+                "P/L": 3.39,
+                "Status": "\ud83d\udfe2 WIN",
+                "Time": "2026-07-16 00:58"
             }
         ]
     },
