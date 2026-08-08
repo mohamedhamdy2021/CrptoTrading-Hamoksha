@@ -1,12 +1,12 @@
 {
-    "balance": 1370.5431789009904,
+    "balance": 1393.608513469157,
     "positions": {
         "BTC-USD": null,
         "ETH-USD": "BUY",
         "SOL-USD": "SELL",
         "BNB-USD": "SELL",
         "XRP-USD": "BUY",
-        "ADA-USD": "BUY",
+        "ADA-USD": null,
         "DOGE-USD": "SELL",
         "AVAX-USD": null,
         "LINK-USD": null,
@@ -23,7 +23,7 @@
         "SOL-USD": 73.3499984741211,
         "BNB-USD": 594.97998046875,
         "XRP-USD": 1.079200029373169,
-        "ADA-USD": 0.16269999742507935,
+        "ADA-USD": 0.0,
         "DOGE-USD": 0.07321999967098236,
         "AVAX-USD": 0.0,
         "LINK-USD": 0.0,
@@ -535,6 +535,16 @@
                 "P/L": -35.05,
                 "Status": "\ud83d\udd34 LOSS",
                 "Time": "2026-07-28 06:14"
+            },
+            {
+                "Type": "BUY",
+                "Entry": 0.16269999742507935,
+                "Exit": 0.20038999617099762,
+                "Gross_PnL": 23.17,
+                "Fees": 0.2,
+                "P/L": 23.07,
+                "Status": "\ud83d\udfe2 WIN",
+                "Time": "2026-08-08 16:41"
             }
         ],
         "DOGE-USD": [
