@@ -1,13 +1,13 @@
 {
-    "balance": 1400.1687510984234,
+    "balance": 1402.3527251783798,
     "positions": {
         "BTC-USD": "SELL",
         "ETH-USD": "BUY",
-        "SOL-USD": "SELL",
-        "BNB-USD": "SELL",
+        "SOL-USD": null,
+        "BNB-USD": null,
         "XRP-USD": "BUY",
         "ADA-USD": "BUY",
-        "DOGE-USD": "SELL",
+        "DOGE-USD": null,
         "AVAX-USD": "SELL",
         "LINK-USD": null,
         "LTC-USD": null,
@@ -15,16 +15,16 @@
         "MATIC-USD": null,
         "NEAR-USD": "SELL",
         "UNI-USD": null,
-        "ATOM-USD": "BUY"
+        "ATOM-USD": null
     },
     "entry_prices": {
         "BTC-USD": 63061.69140625,
         "ETH-USD": 1921.469970703125,
-        "SOL-USD": 73.3499984741211,
-        "BNB-USD": 601.0999755859375,
+        "SOL-USD": 0.0,
+        "BNB-USD": 0.0,
         "XRP-USD": 1.079200029373169,
         "ADA-USD": 0.18174999952316284,
-        "DOGE-USD": 0.07001999765634537,
+        "DOGE-USD": 0.0,
         "AVAX-USD": 6.442999839782715,
         "LINK-USD": 0.0,
         "LTC-USD": 0.0,
@@ -32,7 +32,7 @@
         "MATIC-USD": 0.0,
         "NEAR-USD": 1.6269999742507935,
         "UNI-USD": 0.0,
-        "ATOM-USD": 1.3980000019073486
+        "ATOM-USD": 0.0
     },
     "history": {
         "BTC-USD": [
@@ -309,6 +309,16 @@
                 "P/L": 0.05,
                 "Status": "\ud83d\udfe2 WIN",
                 "Time": "2026-08-04 23:44"
+            },
+            {
+                "Type": "SELL",
+                "Entry": 73.3499984741211,
+                "Exit": 75.30000305175781,
+                "Gross_PnL": -2.66,
+                "Fees": 0.2,
+                "P/L": -2.76,
+                "Status": "\ud83d\udd34 LOSS",
+                "Time": "2026-08-15 23:29"
             }
         ],
         "BNB-USD": [
@@ -441,6 +451,16 @@
                 "P/L": -1.23,
                 "Status": "\ud83d\udd34 LOSS",
                 "Time": "2026-08-10 13:23"
+            },
+            {
+                "Type": "SELL",
+                "Entry": 601.0999755859375,
+                "Exit": 607.5900268554688,
+                "Gross_PnL": -1.08,
+                "Fees": 0.2,
+                "P/L": -1.18,
+                "Status": "\ud83d\udd34 LOSS",
+                "Time": "2026-08-15 23:29"
             }
         ],
         "XRP-USD": [
@@ -637,6 +657,16 @@
                 "P/L": 4.22,
                 "Status": "\ud83d\udfe2 WIN",
                 "Time": "2026-08-13 10:45"
+            },
+            {
+                "Type": "SELL",
+                "Entry": 0.07001999765634537,
+                "Exit": 0.06955000013113022,
+                "Gross_PnL": 0.67,
+                "Fees": 0.2,
+                "P/L": 0.57,
+                "Status": "\ud83d\udfe2 WIN",
+                "Time": "2026-08-15 23:29"
             }
         ],
         "AVAX-USD": [
@@ -1131,6 +1161,16 @@
                 "P/L": -1.93,
                 "Status": "\ud83d\udd34 LOSS",
                 "Time": "2026-08-10 15:40"
+            },
+            {
+                "Type": "BUY",
+                "Entry": 1.3980000019073486,
+                "Exit": 1.4769999980926514,
+                "Gross_PnL": 5.65,
+                "Fees": 0.2,
+                "P/L": 5.55,
+                "Status": "\ud83d\udfe2 WIN",
+                "Time": "2026-08-15 23:29"
             }
         ]
     },
