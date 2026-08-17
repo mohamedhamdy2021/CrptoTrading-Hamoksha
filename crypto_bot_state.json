@@ -1,9 +1,9 @@
 {
-    "balance": 1401.7078392979308,
+    "balance": 1401.607839297931,
     "positions": {
         "BTC-USD": null,
         "ETH-USD": "BUY",
-        "SOL-USD": null,
+        "SOL-USD": "SELL",
         "BNB-USD": null,
         "XRP-USD": "BUY",
         "ADA-USD": "BUY",
@@ -20,7 +20,7 @@
     "entry_prices": {
         "BTC-USD": 0.0,
         "ETH-USD": 1892.25,
-        "SOL-USD": 0.0,
+        "SOL-USD": 75.93000030517578,
         "BNB-USD": 0.0,
         "XRP-USD": 1.079200029373169,
         "ADA-USD": 0.18174999952316284,
