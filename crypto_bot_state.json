@@ -1,12 +1,12 @@
 {
-    "balance": 1401.175107195542,
+    "balance": 1401.0751071955422,
     "positions": {
         "BTC-USD": null,
         "ETH-USD": null,
         "SOL-USD": "SELL",
         "BNB-USD": "SELL",
         "XRP-USD": null,
-        "ADA-USD": null,
+        "ADA-USD": "SELL",
         "DOGE-USD": "SELL",
         "AVAX-USD": "SELL",
         "LINK-USD": "SELL",
@@ -23,7 +23,7 @@
         "SOL-USD": 75.93000030517578,
         "BNB-USD": 603.5399780273438,
         "XRP-USD": 0.0,
-        "ADA-USD": 0.0,
+        "ADA-USD": 0.19032999873161316,
         "DOGE-USD": 0.07689999788999557,
         "AVAX-USD": 6.442999839782715,
         "LINK-USD": 9.501999855041504,
