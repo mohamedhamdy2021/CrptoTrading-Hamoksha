@@ -1,5 +1,5 @@
 {
-    "balance": 1408.588691350256,
+    "balance": 1428.511687580464,
     "positions": {
         "BTC-USD": null,
         "ETH-USD": "SELL",
@@ -10,7 +10,7 @@
         "DOGE-USD": "SELL",
         "AVAX-USD": "SELL",
         "LINK-USD": "SELL",
-        "LTC-USD": "BUY",
+        "LTC-USD": null,
         "DOT-USD": "SELL",
         "MATIC-USD": null,
         "NEAR-USD": "SELL",
@@ -27,7 +27,7 @@
         "DOGE-USD": 0.07689999788999557,
         "AVAX-USD": 6.442999839782715,
         "LINK-USD": 9.501999855041504,
-        "LTC-USD": 44.34400177001953,
+        "LTC-USD": 0.0,
         "DOT-USD": 0.9301999807357788,
         "MATIC-USD": 0.0,
         "NEAR-USD": 1.8504999876022339,
@@ -1003,6 +1003,16 @@
                 "P/L": -3.95,
                 "Status": "\ud83d\udd34 LOSS",
                 "Time": "2026-08-15 19:36"
+            },
+            {
+                "Type": "BUY",
+                "Entry": 44.34400177001953,
+                "Exit": 53.222999572753906,
+                "Gross_PnL": 20.02,
+                "Fees": 0.2,
+                "P/L": 19.92,
+                "Status": "\ud83d\udfe2 WIN",
+                "Time": "2026-08-22 19:58"
             }
         ],
         "DOT-USD": [
