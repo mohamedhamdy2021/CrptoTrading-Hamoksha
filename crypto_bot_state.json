@@ -1,5 +1,5 @@
 {
-    "balance": 1408.688691350256,
+    "balance": 1408.588691350256,
     "positions": {
         "BTC-USD": null,
         "ETH-USD": "SELL",
@@ -11,7 +11,7 @@
         "AVAX-USD": "SELL",
         "LINK-USD": "SELL",
         "LTC-USD": "BUY",
-        "DOT-USD": null,
+        "DOT-USD": "SELL",
         "MATIC-USD": null,
         "NEAR-USD": "SELL",
         "UNI-USD": null,
@@ -28,7 +28,7 @@
         "AVAX-USD": 6.442999839782715,
         "LINK-USD": 9.501999855041504,
         "LTC-USD": 44.34400177001953,
-        "DOT-USD": 0.0,
+        "DOT-USD": 0.9301999807357788,
         "MATIC-USD": 0.0,
         "NEAR-USD": 1.8504999876022339,
         "UNI-USD": 0.0,
