@@ -1,7 +1,7 @@
 {
-    "balance": 1426.839136342533,
+    "balance": 1426.7391363425331,
     "positions": {
-        "BTC-USD": null,
+        "BTC-USD": "SELL",
         "ETH-USD": "SELL",
         "SOL-USD": "SELL",
         "BNB-USD": null,
@@ -18,7 +18,7 @@
         "ATOM-USD": "SELL"
     },
     "entry_prices": {
-        "BTC-USD": 0.0,
+        "BTC-USD": 76831.671875,
         "ETH-USD": 2360.5,
         "SOL-USD": 75.93000030517578,
         "BNB-USD": 0.0,
