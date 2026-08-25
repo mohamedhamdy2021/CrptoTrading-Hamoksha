@@ -1,5 +1,5 @@
 {
-    "balance": 1411.3976505300766,
+    "balance": 1417.4797520889565,
     "positions": {
         "BTC-USD": "SELL",
         "ETH-USD": "SELL",
@@ -13,7 +13,7 @@
         "LTC-USD": "SELL",
         "DOT-USD": "SELL",
         "MATIC-USD": null,
-        "NEAR-USD": "SELL",
+        "NEAR-USD": null,
         "UNI-USD": null,
         "ATOM-USD": "SELL"
     },
@@ -30,7 +30,7 @@
         "LTC-USD": 52.65399932861328,
         "DOT-USD": 0.9301999807357788,
         "MATIC-USD": 0.0,
-        "NEAR-USD": 2.0251998901367188,
+        "NEAR-USD": 0.0,
         "UNI-USD": 0.0,
         "ATOM-USD": 1.49399995803833
     },
@@ -1228,6 +1228,16 @@
                 "P/L": -1.67,
                 "Status": "\ud83d\udd34 LOSS",
                 "Time": "2026-08-22 23:58"
+            },
+            {
+                "Type": "SELL",
+                "Entry": 2.0251998901367188,
+                "Exit": 1.899999976158142,
+                "Gross_PnL": 6.18,
+                "Fees": 0.2,
+                "P/L": 6.08,
+                "Status": "\ud83d\udfe2 WIN",
+                "Time": "2026-08-25 13:58"
             }
         ],
         "UNI-USD": [],
