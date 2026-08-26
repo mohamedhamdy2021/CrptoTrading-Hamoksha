@@ -1,36 +1,36 @@
 {
-    "balance": 1417.4797520889565,
+    "balance": 1378.7837410700529,
     "positions": {
         "BTC-USD": "SELL",
         "ETH-USD": "SELL",
-        "SOL-USD": "SELL",
+        "SOL-USD": null,
         "BNB-USD": "SELL",
-        "XRP-USD": "SELL",
-        "ADA-USD": "SELL",
+        "XRP-USD": null,
+        "ADA-USD": null,
         "DOGE-USD": null,
-        "AVAX-USD": "SELL",
+        "AVAX-USD": null,
         "LINK-USD": "SELL",
         "LTC-USD": "SELL",
-        "DOT-USD": "SELL",
+        "DOT-USD": null,
         "MATIC-USD": null,
-        "NEAR-USD": null,
+        "NEAR-USD": "BUY",
         "UNI-USD": null,
         "ATOM-USD": "SELL"
     },
     "entry_prices": {
         "BTC-USD": 76831.671875,
         "ETH-USD": 2360.5,
-        "SOL-USD": 75.93000030517578,
+        "SOL-USD": 0.0,
         "BNB-USD": 704.2000122070312,
-        "XRP-USD": 1.4491000175476074,
-        "ADA-USD": 0.19032999873161316,
+        "XRP-USD": 0.0,
+        "ADA-USD": 0.0,
         "DOGE-USD": 0.0,
-        "AVAX-USD": 6.442999839782715,
+        "AVAX-USD": 0.0,
         "LINK-USD": 9.501999855041504,
         "LTC-USD": 52.65399932861328,
-        "DOT-USD": 0.9301999807357788,
+        "DOT-USD": 0.0,
         "MATIC-USD": 0.0,
-        "NEAR-USD": 0.0,
+        "NEAR-USD": 1.8485000133514404,
         "UNI-USD": 0.0,
         "ATOM-USD": 1.49399995803833
     },
@@ -359,6 +359,16 @@
                 "P/L": 1.32,
                 "Status": "\ud83d\udfe2 WIN",
                 "Time": "2026-08-16 21:51"
+            },
+            {
+                "Type": "SELL",
+                "Entry": 75.93000030517578,
+                "Exit": 96.1500015258789,
+                "Gross_PnL": -26.63,
+                "Fees": 0.2,
+                "P/L": -26.73,
+                "Status": "\ud83d\udd34 LOSS",
+                "Time": "2026-08-26 09:59"
             }
         ],
         "BNB-USD": [
@@ -603,6 +613,16 @@
                 "P/L": -6.38,
                 "Status": "\ud83d\udd34 LOSS",
                 "Time": "2026-08-19 13:10"
+            },
+            {
+                "Type": "SELL",
+                "Entry": 1.4491000175476074,
+                "Exit": 1.4106999635696411,
+                "Gross_PnL": 2.65,
+                "Fees": 0.2,
+                "P/L": 2.55,
+                "Status": "\ud83d\udfe2 WIN",
+                "Time": "2026-08-26 09:59"
             }
         ],
         "ADA-USD": [
@@ -675,6 +695,16 @@
                 "P/L": 4.31,
                 "Status": "\ud83d\udfe2 WIN",
                 "Time": "2026-08-20 08:57"
+            },
+            {
+                "Type": "SELL",
+                "Entry": 0.19032999873161316,
+                "Exit": 0.20893000066280365,
+                "Gross_PnL": -9.77,
+                "Fees": 0.2,
+                "P/L": -9.87,
+                "Status": "\ud83d\udd34 LOSS",
+                "Time": "2026-08-26 09:59"
             }
         ],
         "DOGE-USD": [
@@ -799,6 +829,16 @@
                 "P/L": -2.06,
                 "Status": "\ud83d\udd34 LOSS",
                 "Time": "2026-05-30 21:44"
+            },
+            {
+                "Type": "SELL",
+                "Entry": 6.442999839782715,
+                "Exit": 7.322000026702881,
+                "Gross_PnL": -13.64,
+                "Fees": 0.2,
+                "P/L": -13.74,
+                "Status": "\ud83d\udd34 LOSS",
+                "Time": "2026-08-26 09:59"
             }
         ],
         "LINK-USD": [
@@ -1115,6 +1155,16 @@
                 "P/L": 5.51,
                 "Status": "\ud83d\udfe2 WIN",
                 "Time": "2026-08-20 18:13"
+            },
+            {
+                "Type": "SELL",
+                "Entry": 0.9301999807357788,
+                "Exit": 0.8436999917030334,
+                "Gross_PnL": 9.3,
+                "Fees": 0.2,
+                "P/L": 9.2,
+                "Status": "\ud83d\udfe2 WIN",
+                "Time": "2026-08-26 09:59"
             }
         ],
         "MATIC-USD": [],
