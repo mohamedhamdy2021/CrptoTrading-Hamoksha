@@ -1,5 +1,5 @@
 {
-    "balance": 1383.2854009023115,
+    "balance": 1383.1854009023116,
     "positions": {
         "BTC-USD": "SELL",
         "ETH-USD": null,
@@ -13,7 +13,7 @@
         "LTC-USD": "SELL",
         "DOT-USD": "SELL",
         "MATIC-USD": null,
-        "NEAR-USD": null,
+        "NEAR-USD": "SELL",
         "UNI-USD": null,
         "ATOM-USD": "SELL"
     },
@@ -30,7 +30,7 @@
         "LTC-USD": 51.119998931884766,
         "DOT-USD": 0.8862000107765198,
         "MATIC-USD": 0.0,
-        "NEAR-USD": 0.0,
+        "NEAR-USD": 2.333899974822998,
         "UNI-USD": 0.0,
         "ATOM-USD": 1.49399995803833
     },
