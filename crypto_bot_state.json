@@ -1,14 +1,14 @@
 {
-    "balance": 1386.6837160496552,
+    "balance": 1315.7029522117707,
     "positions": {
         "BTC-USD": "SELL",
         "ETH-USD": "BUY",
-        "SOL-USD": null,
+        "SOL-USD": "BUY",
         "BNB-USD": "SELL",
-        "XRP-USD": null,
-        "ADA-USD": "SELL",
+        "XRP-USD": "BUY",
+        "ADA-USD": null,
         "DOGE-USD": "SELL",
-        "AVAX-USD": "SELL",
+        "AVAX-USD": null,
         "LINK-USD": "SELL",
         "LTC-USD": "SELL",
         "DOT-USD": "SELL",
@@ -20,12 +20,12 @@
     "entry_prices": {
         "BTC-USD": 79908.7109375,
         "ETH-USD": 2520.85009765625,
-        "SOL-USD": 0.0,
+        "SOL-USD": 121.43000030517578,
         "BNB-USD": 704.2000122070312,
-        "XRP-USD": 0.0,
-        "ADA-USD": 0.20827999711036682,
+        "XRP-USD": 1.5083999633789062,
+        "ADA-USD": 0.0,
         "DOGE-USD": 0.09923999756574631,
-        "AVAX-USD": 7.23199987411499,
+        "AVAX-USD": 0.0,
         "LINK-USD": 9.501999855041504,
         "LTC-USD": 51.119998931884766,
         "DOT-USD": 0.8862000107765198,
@@ -765,6 +765,16 @@
                 "P/L": -5.72,
                 "Status": "\ud83d\udd34 LOSS",
                 "Time": "2026-09-12 21:27"
+            },
+            {
+                "Type": "SELL",
+                "Entry": 0.20827999711036682,
+                "Exit": 0.2529599964618683,
+                "Gross_PnL": -21.45,
+                "Fees": 0.2,
+                "P/L": -21.55,
+                "Status": "\ud83d\udd34 LOSS",
+                "Time": "2026-09-27 22:58"
             }
         ],
         "DOGE-USD": [
@@ -919,6 +929,16 @@
                 "P/L": -13.74,
                 "Status": "\ud83d\udd34 LOSS",
                 "Time": "2026-08-26 09:59"
+            },
+            {
+                "Type": "SELL",
+                "Entry": 7.23199987411499,
+                "Exit": 10.78499984741211,
+                "Gross_PnL": -49.13,
+                "Fees": 0.2,
+                "P/L": -49.23,
+                "Status": "\ud83d\udd34 LOSS",
+                "Time": "2026-09-27 22:58"
             }
         ],
         "LINK-USD": [
